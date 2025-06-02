@@ -7,7 +7,7 @@ const blogSchema = new mongoose.Schema({
    category :
    {
      type : mongoose.Schema.Types.ObjectId,
-     refer: "categories",
+     ref: "categories",
    },
    description :
    {
@@ -18,7 +18,7 @@ const blogSchema = new mongoose.Schema({
    },
    user : {
     type : mongoose.Schema.Types.ObjectId,
-    refer : "users",
+    ref : "users",
    }
 });
 
