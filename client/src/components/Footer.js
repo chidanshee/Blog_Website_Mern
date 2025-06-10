@@ -30,9 +30,6 @@ const Footer = () => {
               <li>
                 <Link to="/add-category" className="footer-link text-white text-decoration-none">Add Category</Link>
               </li>
-              <li>
-                <Link to="/news" className="footer-link text-white text-decoration-none">Latest-News</Link>
-              </li>
             </ul>
           </div>
 
