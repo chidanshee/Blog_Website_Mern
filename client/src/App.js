@@ -9,6 +9,7 @@ import AddBlog from './pages/AddBlog.js';
 import SingleBlog from './pages/SingleBlog.js';
 import PrivateRoute from './services/Protected.js';
 import Footer from './components/Footer.js';
+import NewsComponent from './pages/News.js';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/add-blog" element={<AddBlog />} />
         <Route path="/add-category" element={<AddCategory />} />
         <Route path="/blog/:id" element={<SingleBlog />} />
+        <Route path="/news" element={<NewsComponent />} />
         </Route>
       </Routes>
    <Footer/>
