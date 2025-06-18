@@ -2,19 +2,8 @@ import express from "express";
 import AuthController from "../controllers/authcontroller.js";
 import BlogController from "../controllers/blogcontroller.js";
 import CategoryController from "../controllers/catagorycontroller.js";
-import multer from "multer";
+import upload from "../config/cloudinaryConfig.js";
 import checkIsUserAuthenticated from "../middlewares/authMiddleWare.js";
-
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, `public/upload`);
-    },
-    filename: function(req, file, cb) {
-        cb(null, `${Date.now()}-${file.originalname}`);
-    },
-});
-
-const upload = multer({ storage: storage });
 
 const router = express.Router();
 

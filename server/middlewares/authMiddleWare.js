@@ -8,7 +8,8 @@ const checkIsUserAuthenticated = async (req, res, next) => {
     if (authorization && authorization.startsWith("Bearer")) {
         try {
             token = authorization.split(" ")[1];
-            const { userId } = jwt.verify(token, "Bhavy_Zala");
+            // Bhavy_Zala
+            const { userId } = jwt.verify(token,process.env.JWT_SECRET);
             req.user = await authModel.findById(userId).select("-password"); 
             next();
         } catch (error) {

@@ -20,8 +20,8 @@ const NewsComponent = () => {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          `https://newsapi.org/v2/everything?q=${query}&language=en&apiKey=ea16c3261f734d2481f1f6aece178fb7&pageSize=${articlePerPage}&page=${pgno}`
-        );
+            `https://news-backend-oyx9.onrender.com/api/news?query=${query}&page=${pgno}&pageSize=${articlePerPage}`
+          );             
         if (!response.ok) throw new Error('Failed to fetch data');
         const data = await response.json();
         setArticles(data.articles);

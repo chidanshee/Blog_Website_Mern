@@ -49,7 +49,7 @@ const SingleBlog = () => {
 
   <div className="text-center mb-4">
     <img
-      src={`https://checkdeploye.onrender.com/upload/${blog.thumbnail}`}
+      src={blog.thumbnail || "/fallback-image.jpg"}
       className="img-fluid rounded shadow-sm"
       alt={blog?.title}
       style={{

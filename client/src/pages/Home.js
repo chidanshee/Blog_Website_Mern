@@ -39,7 +39,7 @@ const Home = () => {
                 ? blogs.map((item) => (
                     <div key={item.id} className="card m-3 blog-card">
                       <img
-                        src={`https://checkdeploye.onrender.com/upload/${item.thumbnail}`}
+                        src={item.thumbnail || "/fallback-image.jpg"}
                         className="card-img-top"
                         alt={item.title}
                       />
