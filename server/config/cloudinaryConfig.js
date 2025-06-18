@@ -3,9 +3,9 @@ import { CloudinaryStorage } from "multer-storage-cloudinary";
 import multer from "multer";
 
 cloudinary.config({
-  cloud_name: "dijifthbj",
-  api_key: "164377533849664",
-  api_secret: "6GAGHA5cL1pxw2eiytbBpAZXAhw",
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET
 });
 
 const storage = new CloudinaryStorage({
