@@ -42,7 +42,7 @@ const SingleBlog = () => {
     <>
   <div className="container my-4 p-4 bg-white shadow rounded" style={{ maxWidth: "800px" }}>
   <div className="text-center mb-4">
-    <h1 className="display-4 fw-bold text-dark">
+    <h1 className="h1 fw-semibold text-dark">
       {blog.title}
     </h1>
   </div>
@@ -61,17 +61,24 @@ const SingleBlog = () => {
   </div>
 
   <div className="mb-4 px-3">
-    <p
-      className="lead text-dark fs-5"
-      style={{
-        lineHeight: 1.8,
-        wordBreak: "break-word",     // ensures long words wrap
-        whiteSpace: "normal",        // prevents no-wrap issues
-        textAlign: "justify",
-      }}
-    >
-      {blog.description}
-    </p>
+  <div
+  className="lead text-dark fs-5"
+  style={{
+    lineHeight: 1.8,
+    wordBreak: "break-word",
+    whiteSpace: "normal",
+    textAlign: "justify",
+  }}
+>
+{blog.description
+      ? blog.description.split(/\n+/).map((para, i) => (
+          <p key={i} style={{ marginBottom: "1rem" }}>
+            {para}
+          </p>
+        ))
+      : <p>No description available.</p>}
+</div>
+
   </div>
 
   <div className="text-center">

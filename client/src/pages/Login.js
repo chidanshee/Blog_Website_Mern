@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -189,6 +189,12 @@ const Login = () => {
           {otpMessage}
         </div>
       )}
+      {!isRegistered && (
+    <div className="text-center mt-4">
+     <span className='fw-semibold'>New user ? </span>
+      <Link to="/register" className="fw-semibold">Register here</Link>
+    </div>
+  )}
     </form>
   </div>
   

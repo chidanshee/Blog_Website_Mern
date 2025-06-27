@@ -55,10 +55,14 @@
   }
   
   .blog-card .card-title {
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.75rem;
+    white-space: nowrap;        
+    overflow: hidden;         
+    text-overflow: ellipsis;    
   }
+  
     
   .blog-card .card-text {
     font-size: 1rem;
@@ -67,8 +71,19 @@
     margin-bottom: 1rem;
     text-align: left;
   }
+  .clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;    
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
   .badge-container {  
     flex-wrap: wrap;
+    display: flex;       
+    flex-direction: column;
+    align-items: center;
   }
   .category-badge {
     display: inline-flex;
@@ -96,7 +111,6 @@
     padding: 0.35em 0.9em;
     border-radius: 5px;
     line-height: 1;
-    margin-bottom: 0.75rem;
     width: fit-content;
     text-transform: capitalize;
   }
@@ -176,6 +190,8 @@
     flex-grow: 1;
     color: #444;
     margin-bottom: 1rem;
+    white-space: normal;
+    line-height: 1.6;
   }
   
   .news-card .btn {
