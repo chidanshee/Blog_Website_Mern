@@ -64,9 +64,7 @@ const SingleBlog = () => {
   <div
   className="lead text-dark fs-5"
   style={{
-    lineHeight: 1.8,
-    wordBreak: "break-word",
-    whiteSpace: "normal",
+    lineHeight: 1.6,
     textAlign: "justify",
   }}
 >

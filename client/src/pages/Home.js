@@ -5,47 +5,118 @@ import "../style.css";
 
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
+  const [filteredBlogs, setFilteredBlogs] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [pgno, setPgno] = useState(1);
   const blogsPerPage = 8;
 
   useEffect(() => {
-    const fetchAllBlogs = async () => {
+    (async () => {
       try {
-        const res = await axios.get(
-          "https://checkdeploye.onrender.com/api/v1/get/allblogs",
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
-        setBlogs(res.data);
-      } catch (error) {
-        console.error("Error fetching blogs:", error);
+        const [blogsRes, categoriesRes] = await Promise.all([
+          axios.get("https://checkdeploye.onrender.com/api/v1/get/allblogs", {
+            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+          }),
+          axios.get("https://checkdeploye.onrender.com/api/v1/get/catagories", {
+            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+          })
+        ]);
+        setBlogs(blogsRes.data);
+        setFilteredBlogs(blogsRes.data);
+        setCategories(categoriesRes.data);
+      } catch (err) {
+        console.error("Error fetching data:", err);
       }
-    };
-
-    fetchAllBlogs();
+    })();
   }, []);
 
-  const totalPages = Math.ceil(blogs.length / blogsPerPage);
-  const currentBlogs = blogs.slice(
+  const handleSearchAndFilter = () => {
+    let list = [...blogs];
+
+    if (selectedCategory !== "All") {
+      list = list.filter(b => b.category.title === selectedCategory);
+    }
+    if (searchText.trim()) {
+      const q = searchText.toLowerCase();
+      list = list.filter(
+        b =>
+          (b.title + b.user.username + b.category.title)
+            .toLowerCase()
+            .includes(q)
+      );
+    }
+    setFilteredBlogs(list);
+    setPgno(1);
+  };
+
+  const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
+  const currentBlogs = filteredBlogs.slice(
     (pgno - 1) * blogsPerPage,
     pgno * blogsPerPage
   );
 
   return (
     <>
-      <main className="my-5">
+      <main className="my-4">
         <div className="container">
           <section className="text-center">
-            <h2 className="mb-5">
-              <strong>Latest Posts</strong>
-            </h2>
+            <h2 className="mb-4 fw-bold">Latest Posts</h2>
+            <div className="row justify-content-center mb-4">
+              <div className="col-11 col-sm-10 col-md-9 col-lg-8 col-xl-7">
+                <div className="row gy-2 gx-2 gx-sm-3">
+               
+                  <div className="col-12 col-sm-6 col-md-4">
+                    <select
+                      className="form-select"
+                      value={selectedCategory}
+                      onChange={e => setSelectedCategory(e.target.value)}
+                      onKeyDown={e =>
+                        e.key === "Enter" && handleSearchAndFilter()
+                      }
+                    >
+                      <option value="All">All Categories</option>
+                      {categories.map(cat => (
+                        <option key={cat._id} value={cat.title}>
+                          {cat.title}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="col-12 col-sm-6 col-md-5">
+                    <input
+                      className="form-control"
+                      placeholder="Search by Title & Author"
+                      value={searchText}
+                      onChange={e => setSearchText(e.target.value)}
+                      onKeyDown={e =>
+                        e.key === "Enter" && handleSearchAndFilter()
+                      }
+                    />
+                  </div>
+
+                  <div className="col-12 col-sm-12 col-md-3">
+                    <button
+                      className="btn w-100 text-dark"
+                      style={{ backgroundColor: "#FFC107" }}
+                      onClick={handleSearchAndFilter}
+                    >
+                      Search
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="row justify-content-center">
-              {currentBlogs && currentBlogs.length > 0
-                ? currentBlogs.map((item) => (
-                    <div key={item._id} className="col-md-3 mb-4 d-flex">
+              {currentBlogs.length
+                ? currentBlogs.map(item => (
+                    <div
+                      key={item._id}
+                      className="col-11 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex"
+                    >
                       <div className="card blog-card flex-fill">
                         <img
                           src={item.thumbnail || "/fallback-image.jpg"}
@@ -84,31 +155,36 @@ const Home = () => {
                     </div>
                   ))
                 : Array.from({ length: 8 }).map((_, i) => (
-                    <div className="col-md-3 mb-4 d-flex" key={i}>
+                    <div
+                      key={i}
+                      className="col-11 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex"
+                    >
                       <div className="card flex-fill placeholder-glow">
                         <div
                           className="card-img-top placeholder"
-                          style={{ height: "160px" }}
-                        ></div>
+                          style={{ height: "200px" }}
+                        />
                         <div className="card-body">
-                          <h5 className="card-title placeholder col-8 mb-2"></h5>
+                          <h5 className="card-title placeholder col-8 mb-2" />
                           <p className="placeholder-glow">
                             <span className="placeholder col-7"></span>
+                            <span className="placeholder col-4"></span>
+                            <span className="placeholder col-4"></span>
+                            <span className="placeholder col-6"></span>
                             <span className="placeholder col-5"></span>
                           </p>
-                          <a className="btn btn-primary disabled placeholder col-6"></a>
+                          <a className="btn btn-primary disabled placeholder col-6" />
                         </div>
                       </div>
                     </div>
                   ))}
             </div>
 
-            {/* Pagination */}
-            {blogs.length > blogsPerPage && (
+            {filteredBlogs.length > blogsPerPage && (
               <div className="d-flex justify-content-center my-4">
                 <nav>
-                  <ul className="pagination">
-                    <li className={`page-item ${pgno === 1 ? "disabled" : ""}`}>
+                  <ul className="pagination mb-0">
+                    <li className={`page-item ${pgno === 1 && "disabled"}`}>
                       <button
                         className="page-link"
                         onClick={() => setPgno(pgno - 1)}
@@ -119,7 +195,7 @@ const Home = () => {
                     </li>
                     <li
                       className={`page-item ${
-                        pgno === totalPages ? "disabled" : ""
+                        pgno === totalPages && "disabled"
                       }`}
                     >
                       <button

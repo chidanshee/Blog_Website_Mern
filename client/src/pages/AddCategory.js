@@ -1,6 +1,7 @@
 import React , {useState} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const AddCategory = () => {
 
@@ -20,10 +21,10 @@ const AddCategory = () => {
           },
         }
        );
-       alert(res.data.message);
+       toast.success(res.data.message);
        navigate("/");
     } catch (error) {
-      alert(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   }
   return (

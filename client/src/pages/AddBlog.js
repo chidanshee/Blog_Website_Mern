@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+
 
 const AddBlog = () => {
   
@@ -25,7 +28,7 @@ const AddBlog = () => {
         setCategories(res.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
-        alert("Failed to fetch categories");
+        toast.error("Failed to fetch categories");
       } 
     };
     fetchAllCategories();
@@ -56,11 +59,11 @@ const AddBlog = () => {
           },
         }
       );
-      alert(res.data.message);
+      toast.success(res.data.message);
       navigate("/");
     } catch (error) {
       console.error("Error adding blog:", error);
-      alert(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
 

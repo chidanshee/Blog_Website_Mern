@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const Header = () => {
   {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
-    alert("Logout..");
+    toast.success("Logout successful.");
     navigate("/login");
 
   }

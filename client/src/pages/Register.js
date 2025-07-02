@@ -2,6 +2,7 @@ import { useState } from "react";
 import React from 'react';
 import axios from "axios";
 import { useNavigate , Link } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const Register = () => {
 
@@ -16,10 +17,10 @@ const Register = () => {
     e.preventDefault();
     try {
       const res = await axios.post('https://checkdeploye.onrender.com/api/v1/user/register', input);
-      alert(res.data.message);
+      toast.success(res.data.message);
       navigate('/login');
     } catch (error) {
-      alert(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
   

@@ -9,11 +9,14 @@ import AddBlog from './pages/AddBlog.js';
 import SingleBlog from './pages/SingleBlog.js';
 import PrivateRoute from './services/Protected.js';
 import Footer from './components/Footer.js';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import NewsComponent from './pages/News.js';
 
 const App = () => {
   return (
     <>
+   <ToastContainer />
    <Header/>
       <Routes>
         <Route path="/login" element={<Login />} />
