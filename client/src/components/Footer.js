@@ -39,7 +39,7 @@ const Footer = () => {
           {/* Contact Info */}
           <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
             <h6 className="text-uppercase fw-bold mb-3">Contact</h6>
-            <p className="footer-link"><i className="bi bi-envelope-fill me-2"></i>chidanshee2004@gmail.com</p>
+            <p className="footer-link"><i className="bi bi-envelope-fill me-2"></i>chidanshee@gmail.com</p>
            
             <p className="footer-link"><i className="bi bi-geo-alt-fill me-2"></i> Ahmedabad, Gujarat, India</p>
           </div>
