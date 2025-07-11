@@ -9,7 +9,7 @@ const Footer = () => {
 
           {/* About Section */}
           <div className="col-md-4 col-lg-4 col-xl-3 mb-4">
-            <h5 className="footer-brand text-uppercase fw-bold mb-3">Bhavy Zala</h5>
+            <h5 className="footer-brand text-uppercase fw-bold mb-3">Chidanshee Surani</h5>
             <p>
               BlogByMe - A simple, clean and secure platform to share your blogs and ideas.
               <br />
@@ -39,13 +39,8 @@ const Footer = () => {
           {/* Contact Info */}
           <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
             <h6 className="text-uppercase fw-bold mb-3">Contact</h6>
-            <p className="footer-link"><i className="bi bi-envelope-fill me-2"></i>zalabhavy2004@gmail.com</p>
-            <p>
-              <i className="bi bi-globe me-2"></i>
-              <a href="https://bhavy.netlify.app/" className="footer-link text-white text-decoration-none" target="_blank" rel="noopener noreferrer">
-                bhavy.netlify.app
-              </a>
-            </p>
+            <p className="footer-link"><i className="bi bi-envelope-fill me-2"></i>chidanshee2004@gmail.com</p>
+           
             <p className="footer-link"><i className="bi bi-geo-alt-fill me-2"></i> Ahmedabad, Gujarat, India</p>
           </div>
 
@@ -54,8 +49,8 @@ const Footer = () => {
 
       <div className="text-center p-3 mt-4 bg-dark bg-opacity-25">
         Made with ❤️ by{' '}
-        <a className="footer-link text-white fw-bold text-decoration-none" href="https://bhavy.netlify.app/" target="_blank" rel="noopener noreferrer">
-          Bhavy Zala
+        <a className="footer-link text-white fw-bold text-decoration-none" href="/" target="_blank" rel="noopener noreferrer">
+          Chidanshee Surani
         </a>
       </div>
     </footer>
